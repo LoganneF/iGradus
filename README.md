@@ -9,4 +9,4 @@ General App Idea:
 An application that allows the user to organize students, assignments and grades.
 
 Who Would Use It:
-Teacher 
+Teachers 
