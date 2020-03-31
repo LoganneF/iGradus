@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css?family=DM+Sans&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +7,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   font-family: 'DM Sans', sans-serif;
 }
 
@@ -23,6 +22,7 @@ code {
   -moz-box-shadow: 0 8px 6px -6px rgb(116, 116, 116);
   box-shadow: 0 8px 6px -6px rgb(116, 116, 116);
   color: white;
+  text-align: center;
 }
 .navBar h1 {
   font-size: 50px;
@@ -35,4 +35,30 @@ code {
   left: 30px;
   top: 15px
 }
+
+.classroomContent {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2%;
+}
+
+.studentCard {
+  background: rgb(237, 237, 237);
+  height: 50px;
+}
+
+.studentCard img, .studentCard h5 {
+  display: inline-block;
+}
+
+.studentCard img {
+  margin-right: 10px;
+  margin-left: 2%;
+  margin-top: 7px;
+}
+.studentCard h5 {
+  padding-top: 10px;
+}
+
+
 
