@@ -4,7 +4,11 @@ import './App.css';
 class App extends React.Component {
   render() {
     return (
-      <h1>iGradus</h1>
+      <div className="navBar">
+
+        <h1>iGradus</h1>
+      </div>
+      
     )
   }
 }
