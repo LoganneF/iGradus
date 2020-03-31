@@ -43,7 +43,7 @@ code {
 }
 
 .classroomIntroduction h3 {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.6em;
   font-weight: 400;
   font-size: 38px;
 }
@@ -51,7 +51,7 @@ code {
 .studentList {
   margin-top: 1em;
   margin-left: 5%;
-  margin-right: 5%;
+  margin-right: 3%;
 }
 
 .studentCard {
@@ -80,7 +80,7 @@ code {
   display: inline-block;
   padding-top: 12px;
   margin-left: 3px;
-  font-size: 22px;
+  font-size: 20px;
 }
 .studentCard h5:hover {
   text-decoration: underline;
