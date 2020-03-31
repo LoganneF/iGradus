@@ -36,28 +36,54 @@ code {
   top: 15px
 }
 
-.classroomContent {
+.classroomIntroduction {
   margin-left: 10%;
   margin-right: 10%;
   margin-top: 2%;
 }
 
-.studentCard {
-  background: rgb(237, 237, 237);
-  height: 50px;
+.classroomIntroduction h3 {
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  font-size: 38px;
 }
 
-.studentCard img, .studentCard h5 {
+.studentList {
+  margin-top: 1em;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.studentCard {
+  background: rgb(227, 227, 227);
+  height: 50px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px 2px #bbbbbbde; /* mark the inset */
   display: inline-block;
+  margin-right: 2%;
+  margin-bottom: 2%;
+}
+
+.studentCard:hover {
+  background: rgba(210, 210, 210, 0.844);
 }
 
 .studentCard img {
   margin-right: 10px;
-  margin-left: 2%;
+  margin-left: 4%;
   margin-top: 7px;
+  float: left;
 }
+
 .studentCard h5 {
-  padding-top: 10px;
+  display: inline-block;
+  padding-top: 12px;
+  margin-left: 3px;
+  font-size: 22px;
+}
+.studentCard h5:hover {
+  text-decoration: underline;
 }
 
 
