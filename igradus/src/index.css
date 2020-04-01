@@ -54,10 +54,17 @@ code {
   font-size: 38px;
 }
 
+#new-student-button {
+  margin-top: 5px;
+  display: block;
+}
+
 .studentList {
   margin-top: 1em;
   margin-left: 5%;
   margin-right: 3%;
+  width: 80%;
+  display: inline-block;
 }
 
 .studentCard {
@@ -95,6 +102,89 @@ code {
   text-decoration: underline;
   color: white;
 }
+
+.new-form-container {
+  text-align: center;
+  margin-bottom: 3em;
+  width: 18%;
+  float: right;
+  
+}
+
+.student-details {
+  text-align: center;
+}
+
+.assignmentList {
+  margin-top: 1em;
+  margin-left: 5%;
+  margin-right: 3%;
+  width: 80%;
+  display: inline-block;
+}
+
+.assignmentCard {
+  background: rgb(227, 227, 227);
+  height: 50px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px 2px #bbbbbbde; /* mark the inset */
+  display: inline-block;
+  margin-right: 2%;
+  margin-bottom: 20px;
+}
+
+.assignmentCard:hover {
+  background: rgb(55, 112, 186);
+  color: white;
+}
+
+.assignmentCard h4 {
+  display: inline-block;
+  padding-top: 15px;
+  margin-left: 15px;
+  font-size: 18px;
+}
+
+.assignmentCard h4:hover {
+  text-decoration: underline;
+}
+
+.assignmentCard h6 {
+  float: right;
+  padding-top: 18px;
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+form input {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  width: 200px;
+  
+}
+
+#modify-student-button {
+  margin-bottom: 20px;
+  width: 125px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.section-title {
+  margin-bottom: 15px;
+}
+
+#modify-assignment-button {
+  margin-bottom: 20px;
+  width: 145px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+
+
 
 
 
