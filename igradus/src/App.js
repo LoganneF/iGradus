@@ -7,7 +7,7 @@ class StudentCard extends React.Component {
       <div>
         <div className="studentCard">
           <img src="https://cdn.clipart.email/38ee7d3fbd4d64f0a95f3dc280ccecb0_gender-partitioned-babe_396-355.png" alt="Student Image" className="studentCardImage" height="35" width="35"/>
-          <h5>Chris South</h5>
+          <h5>Marco Copy</h5>
         </div>
         <div className="studentCard">
           <img src="https://cdn.clipart.email/38ee7d3fbd4d64f0a95f3dc280ccecb0_gender-partitioned-babe_396-355.png" alt="Student Image" className="studentCardImage" height="35" width="35"/>
