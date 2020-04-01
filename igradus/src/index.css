@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Nunito', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.navBar {
+  background: linear-gradient( 109.4deg,  rgba(69,127,202,1) 3.6%, rgba(23,77,145,1) 94.9% );;
+  height: 5em;
+  -webkit-box-shadow: 0 8px 6px -6px rgb(116, 116, 116);
+  -moz-box-shadow: 0 8px 6px -6px rgb(116, 116, 116);
+  box-shadow: 0 8px 6px -6px rgb(116, 116, 116);
+  color: white;
+  text-align: center;
+}
+.navBar h1 {
+  font-size: 50px;
+  padding-top: 0.15em;
+  letter-spacing: 1.5px;
+}
+
+.logo {
+  position: absolute;
+  left: 30px;
+  top: 15px
+}
+
+#log-out-button {
+  position: absolute;
+  right: 35px;
+  top: 20px
+}
+
+.classroomIntroduction {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2%;
+}
+
+.classroomIntroduction h3 {
+  margin-bottom: 0.6em;
+  font-weight: 400;
+  font-size: 38px;
+}
+
+.studentList {
+  margin-top: 1em;
+  margin-left: 5%;
+  margin-right: 3%;
+}
+
+.studentCard {
+  background: rgb(227, 227, 227);
+  height: 50px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px 2px #bbbbbbde; /* mark the inset */
+  display: inline-block;
+  margin-right: 2%;
+  margin-bottom: 20px;
+}
+
+.studentCard:hover {
+  background: rgb(55, 112, 186);
+  color: white;
+}
+
+.studentCard img {
+  margin-right: 10px;
+  margin-left: 4%;
+  margin-top: 7px;
+  float: left;
+  border: 1px solid #1f569c;
+  border-radius: 25%;
+}
+
+.studentCard h5 {
+  display: inline-block;
+  padding-top: 13px;
+  margin-left: 3px;
+  font-size: 20px;
+}
+.studentCard h5:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+
+
