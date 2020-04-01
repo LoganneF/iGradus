@@ -56,7 +56,7 @@ class App extends React.Component {
         <div className="studentList">
           {this.state.students.map(student => (
             <div key={student._id} className="studentCard">
-              <img src={student.studentImage} alt="" className="studentCardImage" height="35" width="35"/>
+              <img src={student.imageUrl} alt="" className="studentCardImage" height="35" width="35"/>
               <h5>{student.name}</h5>
             </div>
           )
