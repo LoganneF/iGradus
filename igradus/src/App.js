@@ -1,36 +1,47 @@
 import React, {Component} from 'react';
 import './App.css';
 
-class StudentCard extends React.Component {
-  render() {
-    return (
-      <div>
-        <div className="studentCard">
-          <img src="https://cdn.clipart.email/38ee7d3fbd4d64f0a95f3dc280ccecb0_gender-partitioned-babe_396-355.png" alt="Student Image" className="studentCardImage" height="35" width="35"/>
-          <h5>Marco Copy</h5>
-        </div>
-        <div className="studentCard">
-          <img src="https://cdn.clipart.email/38ee7d3fbd4d64f0a95f3dc280ccecb0_gender-partitioned-babe_396-355.png" alt="Student Image" className="studentCardImage" height="35" width="35"/>
-          <h5>Loganne Featherston</h5>
-        </div>
-        <div className="studentCard">
-          <img src="https://cdn.clipart.email/38ee7d3fbd4d64f0a95f3dc280ccecb0_gender-partitioned-babe_396-355.png" alt="Student Image" className="studentCardImage" height="35" width="35"/>
-          <h5>Marco Riesgo</h5>
-        </div>
-        <div className="studentCard">
-          <img src="https://cdn.clipart.email/38ee7d3fbd4d64f0a95f3dc280ccecb0_gender-partitioned-babe_396-355.png" alt="Student Image" className="studentCardImage" height="35" width="35"/>
-          <h5>Chris Murphy</h5>
-        </div>
-        <div className="studentCard">
-          <img src="https://cdn.clipart.email/38ee7d3fbd4d64f0a95f3dc280ccecb0_gender-partitioned-babe_396-355.png" alt="Student Image" className="studentCardImage" height="35" width="35"/>
-          <h5>Ira Herman</h5>
-        </div>
-      </div>
-    )
-  }
+let baseURL = process.env.REACT_APP_BASEURL;
+
+if (process.env.NODE_ENV === "development") {
+  baseURL = "http://localhost:3003";
 }
 
+console.log("current base URL:", baseURL);
+
+fetch(baseURL + "/students")
+  .then(
+    data => {
+      return data.json();
+    },
+    err => console.log(err)
+  )
+  .then(
+    parsedData => console.log(parsedData),
+    err => console.log(err)
+);
+
+
 class App extends React.Component {
+  
+  state = {
+    students: []
+  }
+
+  getStudents = () => {
+    fetch(baseURL + "/students")
+      .then(
+        data => {
+          return data.json();
+        },
+        err => console.log(err)
+      )
+      .then(
+        parsedData => this.setState({ students: parsedData }),
+        err => console.log(err)
+      );
+  };
+  
   render() {
     return (
       <div className="App">
@@ -43,10 +54,19 @@ class App extends React.Component {
           <h3>My Classroom</h3>
         </div>
         <div className="studentList">
-          <StudentCard />
+          {this.state.students.map(student => (
+            <div key={student._id} className="studentCard">
+              <img src={student.studentImage} alt="" className="studentCardImage" height="35" width="35"/>
+              <h5>{student.name}</h5>
+            </div>
+          )
+        )}
         </div>
       </div>
     )
+  }
+  componentDidMount() {
+    this.getStudents();
   }
 }
 
