@@ -48,7 +48,7 @@ class NewStudentForm extends React.Component {
           <h3>Add A New Student</h3>
           <form onSubmit={this.handleSubmit}>
               <input type="text" id="name" name="name" onChange={this.handleChange} placeholder="Name"/>
-              <input type="text" id="image" name="image" onChange={this.handleChange} placeholder="Image URL"/>
+              <input type="text" id="imageUrl" name="imageUrl" onChange={this.handleChange} placeholder="Image URL"/>
               <input type="boolean" id="grade" name="grade" onChange={this.handleChange} placeholder="Grade"/>
               <input type="submit" class="btn btn-success" id="submit-button" value="Enter"/>
           </form>
