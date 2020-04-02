@@ -6,6 +6,7 @@ import NewAssignmentForm from "./components/NewAssignmentForm.js";
 import ShowStudent from "./components/ShowStudent.js";
 import EditStudent from "./components/EditStudent.js";
 import ShowAssignment from "./components/ShowAssignment.js";
+import EditAssignment from "./components/EditAssignment.js";
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -167,7 +168,8 @@ class Assignments extends React.Component {
 
   state = {
     assignments: [],
-    showFormModal: false
+    showFormModal: false,
+    editAssignment: false
   }
 
   getAssignment = assignment => {
@@ -237,6 +239,28 @@ class Assignments extends React.Component {
     })
   }
 
+  editAssignment = (resJson) => {
+    const copyAssignments = [...this.state.assignments]
+    const findIndex = this.state.assignments.findIndex(assignment => assignment._id === assignment._id)
+    copyAssignments[findIndex].name = resJson.name
+    copyAssignments[findIndex].date = resJson.date
+    copyAssignments[findIndex].grade = resJson.grade
+    this.setState({assignments: copyAssignments})
+  }
+
+  handleEditAssignmentButtonClick = () => {
+    this.setState({
+      editAssignment: true
+    });
+  }
+
+  handleEditAssignmentSubmit = () => {
+    this.setState({
+      editAssignment: false
+    });
+  }
+
+
   render() {
     return (
       <BrowserRouter>
@@ -254,7 +278,8 @@ class Assignments extends React.Component {
           )}
         </div>
         <div className="information-section">
-          { this.state.assignment ? <ShowAssignment assignment={this.state.assignment} deleteAssignment={this.deleteAssignment} closeInfoModal={this.handleCloseInfoModal}/> : null}
+          { this.state.assignment &&! this.state.editAssignment ? <ShowAssignment baseURL={baseURL} assignment={this.state.assignment} deleteAssignment={this.deleteAssignment} closeInfoModal={this.handleCloseInfoModal} editButtonClick={this.handleEditAssignmentButtonClick} /> : null}
+          { this.state.assignment && this.state.editAssignment ? <EditAssignment baseURL={baseURL} assignment={this.state.assignment} closeEditForm={this.handleEditAssignmentSubmit} closeInfoModal={this.handleCloseInfoModal} editAssignment={this.editAssignment} /> : null}
           { this.state.showFormModal ? <NewAssignmentForm baseURL={baseURL} handleAddAssignment={this.handleAddAssignment} handleCloseFormModal={this.handleCloseFormModal} cancelForm={this.handleCloseFormModal} /> : null}
         </div>
       </BrowserRouter>
