@@ -109,6 +109,26 @@ class Students extends React.Component {
   }
 }
 
+class Dashboard extends React.Component {
+  render() {
+    return (
+      <div>
+        <form action="/" method="POST">
+			<div class="form-group">
+				Username: <input type="text" name="username" autofocus /> <br />
+			</div>
+			<div class="form-group">
+				Password: <input type="password" name="password" /> <br />
+			</div>
+			<div class="form-group">
+				<button type="submit">Login</button>
+			</div>
+		</form>
+      </div>
+    )
+  }
+}
+
 class Assignments extends React.Component {
 
   state = {
@@ -262,7 +282,7 @@ class App extends React.Component {
           <Link to="/students/"><button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Students</button></Link>
           <Link to="/"><button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Home</button></Link>
         </div>
-        <RenderRoutesFromRouter/> 
+        <Dashboard />
       </div>
       </BrowserRouter>
     )
