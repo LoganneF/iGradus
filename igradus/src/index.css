@@ -8,7 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Nunito', sans-serif;
-  text-align: center;
+  
 }
 
 code {
@@ -145,6 +145,7 @@ code {
 
 .studentList {
   margin-top: 1em;
+  margin-left: 5%;
   width: 40%;
   min-height: 85vh;
   display: inline-block;
@@ -245,6 +246,7 @@ h3 {
 
 .assignmentList {
   margin-top: 1em;
+  margin-left: 5%;
   width: 40%;
   min-height: 85vh;
   display: inline-block;
@@ -388,9 +390,9 @@ input::placeholder {
   margin-bottom: 30px;
 }
 
-#close-modal-button {
-  width: 100px;
-  margin-bottom: 20px;
+#close-button {
+  width: 150px;
+  margin-top: 10px;
 }
 
 .section-title {
