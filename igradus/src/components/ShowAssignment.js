@@ -11,7 +11,7 @@ class ShowAssignment extends React.Component {
          <p><span>Average Grade: </span>{this.props.assignment.grade}</p>
          <button type="button" class="btn btn-danger" id="modify-assignment-button" onClick={() => this.props.deleteAssignment(this.props.assignment._id)}>Delete Assignment</button>
          <button type="button" class="btn btn-info" id="modify-assignment-button" onClick={() => this.props.deleteStudent(this.props.student._id)}>Edit Assignment</button> <br />
-         <button type="button" class="btn btn-outline-secondary btn-sm" id="close-button" onClick={this.props.closeInfoModal} >Close</button>
+         <button type="button" class="btn btn-outline-secondary" id="close-button" onClick={this.props.closeInfoModal} >Close</button>
        </div>
       </>
     )

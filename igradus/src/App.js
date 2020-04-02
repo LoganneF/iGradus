@@ -4,6 +4,7 @@ import './App.css';
 import NewStudentForm from "./components/NewStudentForm.js";
 import NewAssignmentForm from "./components/NewAssignmentForm.js";
 import ShowStudent from "./components/ShowStudent.js";
+import EditStudent from "./components/EditStudent.js";
 import ShowAssignment from "./components/ShowAssignment.js";
 
 let baseURL = process.env.REACT_APP_BASEURL;
@@ -41,7 +42,8 @@ fetch(baseURL + "/assignments")
 class Students extends React.Component {
   state = {
     students: [],
-    showFormModal: false
+    showFormModal: false,
+    editStudent: false
   }
   
   getStudent = student => {
@@ -110,6 +112,27 @@ class Students extends React.Component {
       })
     })
   }
+
+  editStudent = (resJson) => {
+      const copyStudents = [...this.state.students]
+      const findIndex = this.state.students.findIndex(student => student._id === student._id)
+      copyStudents[findIndex].name = resJson.name
+      copyStudents[findIndex].imageUrl = resJson.imageUrl
+      copyStudents[findIndex].grade = resJson.grade
+      this.setState({students: copyStudents})
+  }
+
+  handleEditStudentButtonClick = () => {
+    this.setState({
+      editStudent: true
+    });
+  }
+
+  handleEditStudentSubmit = () => {
+    this.setState({
+      editStudent: false
+    });
+  }
       
   render() {
     return (
@@ -128,7 +151,8 @@ class Students extends React.Component {
         )}
       </div>
       <div className="information-section">
-        { this.state.student ? <ShowStudent student={this.state.student} deleteStudent={this.deleteStudent} closeInfoModal={this.handleCloseInfoModal}/> : null}
+        { this.state.student &&! this.state.editStudent ? <ShowStudent baseURL={baseURL} student={this.state.student} closeInfoModal={this.handleCloseInfoModal} editButtonClick={this.handleEditStudentButtonClick} deleteStudent={this.deleteStudent} /> : null}
+        { this.state.student && this.state.editStudent ? <EditStudent baseURL={baseURL} student={this.state.student} closeEditForm={this.handleEditStudentSubmit} editStudent={this.editStudent} /> : null}
         { this.state.showFormModal ? <NewStudentForm baseURL={baseURL} handleAddStudent={this.handleAddStudent} handleCloseFormModal={this.handleCloseFormModal} cancelForm={this.handleCloseFormModal} /> : null}
       </div>
       </BrowserRouter>
@@ -287,21 +311,6 @@ class RenderRoutesFromRouter extends React.Component {
 
 class App extends React.Component {
   
-  // showStudent = (student) => {
-  //   fetch(baseURL + '/students/' + student._id, {
-  //     method: 'PUT',
-  //     body: JSON.stringify({celebrated: !holiday.celebrated}),
-  //     headers: {
-  //       'Content-Type' : 'application/json'
-  //     }
-  //   }).then(res => res.json())
-  //   .then(resJson => {
-  //        const copyHolidays = [...this.state.holidays]
-  //         const findIndex = this.state.holidays.findIndex(holiday => holiday._id === resJson._id)
-  //         copyHolidays[findIndex].celebrated = resJson.celebrated
-  //         this.setState({holidays: copyHolidays})
-  //   })
-  // }
   
   render() {
     return (
@@ -316,7 +325,7 @@ class App extends React.Component {
             <Link to="/"><h4 id="nav-bar-button">Home</h4></Link>
             <Link to="/students/"><h4 id="nav-bar-button">Students</h4></Link>
             <Link to="/assignments/"><h4 id="nav-bar-button">Assignments</h4></Link>
-            <button type="button" class="btn btn-warning btn-sm" id="log-out-button">Log Out</button>
+            <button type="button" class="btn btn-light" id="log-out-button">Log Out</button>
           </div>
         </div>
         <RenderRoutesFromRouter/> 
