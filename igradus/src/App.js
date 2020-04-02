@@ -40,11 +40,15 @@ fetch(baseURL + "/assignments")
 
 class Students extends React.Component {
   state = {
-    students: []
+    students: [],
+    showFormModal: false
   }
   
   getStudent = student => {
-    this.setState({student})
+    this.setState({
+      student,
+      showFormModal: false
+    })
   }
   
   getStudents = () => {
@@ -68,10 +72,30 @@ class Students extends React.Component {
       students: copyStudents,
       name: '',
       imageUrl: '',
-      grade: '',
-      student: {},
+      grade: ''
     });
   };
+
+  handleOpenFormModal = () => {
+    this.setState({
+      showFormModal: true,
+      student: false
+    })
+  }
+
+  handleCloseFormModal = () => {
+    this.setState({
+      showFormModal: false
+    })
+  }
+
+  handleCloseInfoModal = () => {
+    this.setState({
+      student:false
+    })
+  }
+
+
       
   deleteStudent = id => {
     fetch(baseURL + "/students/" + id, {
@@ -80,7 +104,10 @@ class Students extends React.Component {
       const studentArr = this.state.students.filter( student => {
         return student._id !== id
       })
-      this.setState({students: studentArr})
+      this.setState({
+        students: studentArr,
+        student: false
+      })
     })
   }
       
@@ -88,19 +115,22 @@ class Students extends React.Component {
     return (
       <BrowserRouter>
       <div className="studentList">
-      <h4>Students</h4>
-        {this.state.students.map(student => (
-          <div key={student._id} onClick={() => this.getStudent(student)} className="studentCard">
-            <img src={student.imageUrl} alt="" className="studentCardImage" height="35" width="35"/>
-            <h5>{student.name}</h5>
-          </div>
-        )
-      )}
+        <div className="student-list-heading">
+          <h3>Students</h3>
+          <button type="button" onClick={this.handleOpenFormModal} class="btn btn-warning" id="add-new-button">Add Student</button>
+        </div>
+          {this.state.students.map(student => (
+            <div key={student._id} onClick={() => this.getStudent(student)} className="studentCard">
+              <img src={student.imageUrl} alt="" className="studentCardImage" height="35" width="35"/>
+              <h5>{student.name}</h5>
+            </div>
+          )
+        )}
       </div>
-      { this.state.student ? <ShowStudent student={this.state.student} deleteStudent={this.deleteStudent}/> : null}
-      {/* <div className="new-form-container">
-        <NewStudentForm baseURL={baseURL} handleAddStudent={this.handleAddStudent} />
-      </div> */}
+      <div className="information-section">
+        { this.state.student ? <ShowStudent student={this.state.student} deleteStudent={this.deleteStudent} closeInfoModal={this.handleCloseInfoModal}/> : null}
+        { this.state.showFormModal ? <NewStudentForm baseURL={baseURL} handleAddStudent={this.handleAddStudent} handleCloseFormModal={this.handleCloseFormModal} cancelForm={this.handleCloseFormModal} /> : null}
+      </div>
       </BrowserRouter>
     );
   }
@@ -112,11 +142,15 @@ class Students extends React.Component {
 class Assignments extends React.Component {
 
   state = {
-    assignments: []
+    assignments: [],
+    showFormModal: false
   }
 
   getAssignment = assignment => {
-    this.setState({assignment})
+    this.setState({
+      assignment,
+      showFormModal: false
+    })
   }
 
 
@@ -139,12 +173,30 @@ class Assignments extends React.Component {
     copyAssignments.unshift(assignment);
     this.setState({
       assignments: copyAssignments,
-      date: String,
-      name: String,
-      grade: String,
-      assignment: {}
+      date: '',
+      name: '',
+      grade: ''
     });
   };
+
+  handleOpenFormModal = () => {
+    this.setState({
+      showFormModal: true,
+      assignment: false
+    })
+  }
+
+  handleCloseFormModal = () => {
+    this.setState({
+      showFormModal: false
+    })
+  }
+
+  handleCloseInfoModal = () => {
+    this.setState({
+      assignment:false
+    })
+  }
 
 
   deleteAssignment = id => {
@@ -154,30 +206,33 @@ class Assignments extends React.Component {
       const assignmentsArr = this.state.assignments.filter( assignment => {
         return assignment._id !== id
       })
-      this.setState({assignments: assignmentsArr})
+      this.setState({
+        assignments: assignmentsArr,
+        assignment: false
+      })
     })
   }
 
   render() {
     return (
       <BrowserRouter>
-      <div className="dashboard">
-        <h3>Class Assignments</h3>
         <div className="assignmentList">
-          <h4 className="section-title">Assignments</h4>
-          <div className="new-form-container">
-            <NewAssignmentForm baseURL={baseURL} handleAddAssignment={this.handleAddAssignment} />
+          <div className="assignment-list-heading">
+            <h3>Assignments</h3>
+            <button type="button" onClick={this.handleOpenFormModal} class="btn btn-warning" id="add-new-button">Add Assignment</button>
           </div>
-          { this.state.assignment ? <ShowAssignment assignment={this.state.assignment} deleteAssignment={this.deleteAssignment}/> : null}
           {this.state.assignments.map(assignment => (
-            <div key={assignment._id} onClick={() => this.getAssignment(assignment)} className="assignmentCard">
-              <h4>{assignment.name}</h4>
-              <h6>{assignment.date}</h6>
-            </div>
-          )
-        )}
+              <div key={assignment._id} onClick={() => this.getAssignment(assignment)} className="assignmentCard">
+                <h3>{assignment.name}</h3>
+                <h5>{assignment.date}</h5>
+              </div>
+            )
+          )}
         </div>
-      </div>
+        <div className="information-section">
+          { this.state.assignment ? <ShowAssignment assignment={this.state.assignment} deleteAssignment={this.deleteAssignment} closeInfoModal={this.handleCloseInfoModal}/> : null}
+          { this.state.showFormModal ? <NewAssignmentForm baseURL={baseURL} handleAddAssignment={this.handleAddAssignment} handleCloseFormModal={this.handleCloseFormModal} cancelForm={this.handleCloseFormModal} /> : null}
+        </div>
       </BrowserRouter>
     );
   }
@@ -254,13 +309,15 @@ class App extends React.Component {
       <div className="App">
         <div className="navBar">
           <div className="logo">
-            <img src="logo.png" alt="iGradus logo" className="logo" height="50" width="50"/>
+            <img src="logo.png" alt="iGradus logo" className="logo-img" height="50" width="50"/>
             <h1>iGradus</h1>
           </div>
-          <button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Log Out</button>
-          <Link to="/assignments/"><button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Assignments</button></Link>
-          <Link to="/students/"><button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Students</button></Link>
-          <Link to="/"><button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Home</button></Link>
+          <div className="nav-links-container">
+            <Link to="/"><h4 id="nav-bar-button">Home</h4></Link>
+            <Link to="/students/"><h4 id="nav-bar-button">Students</h4></Link>
+            <Link to="/assignments/"><h4 id="nav-bar-button">Assignments</h4></Link>
+            <button type="button" class="btn btn-warning btn-sm" id="log-out-button">Log Out</button>
+          </div>
         </div>
         <RenderRoutesFromRouter/> 
       </div>

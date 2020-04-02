@@ -2,9 +2,9 @@ import React from 'react';
 
 class NewAssignmentForm extends React.Component {
     state = {
-      date: String,
-      name: String,
-      grade: String
+      date: '',
+      name: '',
+      grade: ''
     }
   
     handleChange = event => {
@@ -28,24 +28,29 @@ class NewAssignmentForm extends React.Component {
           .then(resJson => {
             this.props.handleAddAssignment(resJson);
             this.setState({
-              date: String,
-              name: String,
-              grade: String
+              date: '',
+              name: '',
+              grade: ''
             });
           })
+          .then(event => {
+            this.props.handleCloseFormModal(event)
+          })
+
           .catch(error => console.error({ Error: error }));
       };
   
     render() {
       return (
-        <div className="add-student-form">
-          <h5>Add Assignment</h5>
+        <div className="form-details">
+          <h3>Add A New Assignment</h3>
           <form onSubmit={this.handleSubmit}>
-              <input type="text" id="date" name="date" onChange={this.handleChange} value={this.state.date} placeholder="Date"/>
-              <input type="text" id="name" name="name" onChange={this.handleChange} value={this.state.name} placeholder="Name"/>
-              <input type="text" id="grade" name="grade" onChange={this.handleChange} value={this.state.grade} placeholder="Grade"/>
-              <input type="submit" id="submitButton" value="Submit" />
+              <input type="text" id="date" name="date" onChange={this.handleChange} placeholder="Date"/>
+              <input type="text" id="name" name="name" onChange={this.handleChange} placeholder="Name"/>
+              <input type="text" id="grade" name="grade" onChange={this.handleChange} placeholder="Grade"/>
+              <input type="submit" class="btn btn-success" id="submit-button" value="Enter"/>
           </form>
+          <button type="button" class="btn btn-danger" id="submit-button" onClick={this.props.cancelForm}>Cancel</button>
         </div>
         );
       }
