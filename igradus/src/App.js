@@ -314,16 +314,11 @@ class Index extends React.Component {
 
 
 
-
-
-
-
-
 class RenderRoutesFromRouter extends React.Component {
   render() {
     return (
       <div>
-        <Route path="/" exact component={Index} />
+        <Route path="/home" exact component={Index} />
         <Route path="/students/" exact component={Students} />
         <Route path="/assignments/" component={Assignments} />
       </div>
@@ -332,10 +327,13 @@ class RenderRoutesFromRouter extends React.Component {
 }
 
 
-
-
 class App extends React.Component {
   
+  state = {
+    loginForm: true
+  }
+
+
   
   render() {
     return (
@@ -347,12 +345,43 @@ class App extends React.Component {
             <h1>iGradus</h1>
           </div>
           <div className="nav-links-container">
-            <Link to="/"><h4 id="nav-bar-button">Home</h4></Link>
+            <Link to="/home"><h4 id="nav-bar-button">Home</h4></Link>
             <Link to="/students/"><h4 id="nav-bar-button">Students</h4></Link>
             <Link to="/assignments/"><h4 id="nav-bar-button">Assignments</h4></Link>
             <button type="button" class="btn btn-light" id="log-out-button">Log Out</button>
           </div>
         </div>
+        <div className="login-container">
+          <h3>Login</h3>
+          <div className="form">
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <input type="text" name="username" placeholder="username" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input type="password" name="password" placeholder="password" />
+            </div>
+            <button type="submit" class="btn btn-primary" id="login-button">Login</button>
+          </div>
+          <button type="submit" class="btn btn-outline-primary" id="login-button">Sign Up</button>
+        </div>
+        <div className="login-container">
+          <h3>Sign Up</h3>
+          <div className="form">
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <input type="text" name="username" placeholder="username" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input type="password" name="password" placeholder="password" />
+            </div>
+            <button type="submit" class="btn btn-primary" id="login-button">Sign Up</button>
+          </div>
+          <button type="submit" class="btn btn-outline-primary" id="login-button">Login</button>
+        </div>
+
         <RenderRoutesFromRouter/> 
       </div>
       </BrowserRouter>
