@@ -4,7 +4,7 @@ class NewStudentForm extends React.Component {
     state = {
       name: '',
       imageUrl: String,
-      grade: Number
+      grade: 0
     }
   
     handleChange = event => {
@@ -28,24 +28,31 @@ class NewStudentForm extends React.Component {
           .then(resJson => {
             this.props.handleAddStudent(resJson);
             this.setState({
-              name: String,
-              imageUrl: String,
+              name: '',
+              imageUrl: '',
               grade: Number
             });
           })
+          .then(event => {
+            this.props.handleCloseFormModal(event)
+          })
+
           .catch(error => console.error({ Error: error }));
       };
+
+
   
     render() {
       return (
-        <div className="add-student-form">
-          <h5>Add Student</h5>
+        <div className="student-details">
+          <h3>Add A New Student</h3>
           <form onSubmit={this.handleSubmit}>
-              <input type="text" id="name" name="name" onChange={this.handleChange} value={this.state.name} placeholder="Name"/>
-              <input type="text" id="image" name="image" onChange={this.handleChange} value={this.state.imageUrl} placeholder="Image URL"/>
-              <input type="boolean" id="grade" name="grade" onChange={this.handleChange} value={this.state.grade} placeholder="Grade"/>
-              <input type="submit" id="submitButton" value="Submit" />
+              <input type="text" id="name" name="name" onChange={this.handleChange} placeholder="Name"/>
+              <input type="text" id="image" name="image" onChange={this.handleChange} placeholder="Image URL"/>
+              <input type="boolean" id="grade" name="grade" onChange={this.handleChange} placeholder="Grade"/>
+              <input type="submit" class="btn btn-success" id="submit-button" value="Enter"/>
           </form>
+          <button type="button" class="btn btn-danger" id="submit-button" onClick={this.props.cancelForm}>Cancel</button>
         </div>
         );
       }

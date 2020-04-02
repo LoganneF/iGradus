@@ -40,11 +40,15 @@ fetch(baseURL + "/assignments")
 
 class Students extends React.Component {
   state = {
-    students: []
+    students: [],
+    showFormModal: false
   }
   
   getStudent = student => {
-    this.setState({student})
+    this.setState({
+      student,
+      showFormModal: false
+    })
   }
   
   getStudents = () => {
@@ -68,10 +72,30 @@ class Students extends React.Component {
       students: copyStudents,
       name: '',
       imageUrl: '',
-      grade: '',
-      student: {},
+      grade: ''
     });
   };
+
+  handleOpenFormModal = () => {
+    this.setState({
+      showFormModal: true,
+      student: false
+    })
+  }
+
+  handleCloseFormModal = () => {
+    this.setState({
+      showFormModal: false
+    })
+  }
+
+  handleCloseInfoModal = () => {
+    this.setState({
+      student:false
+    })
+  }
+
+
       
   deleteStudent = id => {
     fetch(baseURL + "/students/" + id, {
@@ -80,7 +104,10 @@ class Students extends React.Component {
       const studentArr = this.state.students.filter( student => {
         return student._id !== id
       })
-      this.setState({students: studentArr})
+      this.setState({
+        students: studentArr,
+        student: false
+      })
     })
   }
       
@@ -88,7 +115,10 @@ class Students extends React.Component {
     return (
       <BrowserRouter>
       <div className="studentList">
-      <h4>Students</h4>
+      <div className="student-list-heading">
+        <h3>Students</h3>
+        <button type="button" onClick={this.handleOpenFormModal} class="btn btn-warning" id="add-new-button">Add Student</button>
+      </div>
         {this.state.students.map(student => (
           <div key={student._id} onClick={() => this.getStudent(student)} className="studentCard">
             <img src={student.imageUrl} alt="" className="studentCardImage" height="35" width="35"/>
@@ -97,10 +127,10 @@ class Students extends React.Component {
         )
       )}
       </div>
-      { this.state.student ? <ShowStudent student={this.state.student} deleteStudent={this.deleteStudent}/> : null}
-      {/* <div className="new-form-container">
-        <NewStudentForm baseURL={baseURL} handleAddStudent={this.handleAddStudent} />
-      </div> */}
+      <div className="information-section">
+        { this.state.student ? <ShowStudent student={this.state.student} deleteStudent={this.deleteStudent} closeInfoModal={this.handleCloseInfoModal}/> : null}
+        { this.state.showFormModal ? <NewStudentForm baseURL={baseURL} handleAddStudent={this.handleAddStudent} handleCloseFormModal={this.handleCloseFormModal} cancelForm={this.handleCloseFormModal} /> : null}
+      </div>
       </BrowserRouter>
     );
   }
