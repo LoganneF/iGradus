@@ -4,7 +4,7 @@ class NewStudentForm extends React.Component {
     state = {
       name: '',
       imageUrl: String,
-      passing: Boolean
+      grade: Number
     }
   
     handleChange = event => {
@@ -18,7 +18,7 @@ class NewStudentForm extends React.Component {
           body: JSON.stringify({ 
               name: this.state.name,
               imageUrl: this.state.imageUrl,
-              passing: this.state.passing
+              grade: this.state.grade
              }),
           headers: {
             "Content-Type": "application/json"
@@ -30,7 +30,7 @@ class NewStudentForm extends React.Component {
             this.setState({
               name: String,
               imageUrl: String,
-              passing: Boolean
+              grade: Number
             });
           })
           .catch(error => console.error({ Error: error }));
@@ -43,7 +43,7 @@ class NewStudentForm extends React.Component {
           <form onSubmit={this.handleSubmit}>
               <input type="text" id="name" name="name" onChange={this.handleChange} value={this.state.name} placeholder="Name"/>
               <input type="text" id="image" name="image" onChange={this.handleChange} value={this.state.imageUrl} placeholder="Image URL"/>
-              <input type="boolean" id="passing" name="passing" onChange={this.handleChange} value={this.state.passing} placeholder="Passing"/>
+              <input type="boolean" id="grade" name="grade" onChange={this.handleChange} value={this.state.grade} placeholder="Grade"/>
               <input type="submit" id="submitButton" value="Submit" />
           </form>
         </div>
