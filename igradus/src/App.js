@@ -309,13 +309,15 @@ class App extends React.Component {
       <div className="App">
         <div className="navBar">
           <div className="logo">
-            <img src="logo.png" alt="iGradus logo" className="logo" height="50" width="50"/>
+            <img src="logo.png" alt="iGradus logo" className="logo-img" height="50" width="50"/>
             <h1>iGradus</h1>
           </div>
-          <button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Log Out</button>
-          <Link to="/assignments/"><button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Assignments</button></Link>
-          <Link to="/students/"><button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Students</button></Link>
-          <Link to="/"><button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Home</button></Link>
+          <div className="nav-links-container">
+            <Link to="/"><h4 id="nav-bar-button">Home</h4></Link>
+            <Link to="/students/"><h4 id="nav-bar-button">Students</h4></Link>
+            <Link to="/assignments/"><h4 id="nav-bar-button">Assignments</h4></Link>
+            <button type="button" class="btn btn-warning btn-sm" id="log-out-button">Log Out</button>
+          </div>
         </div>
         <RenderRoutesFromRouter/> 
       </div>
