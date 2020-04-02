@@ -87,23 +87,20 @@ class Students extends React.Component {
   render() {
     return (
       <BrowserRouter>
-      <div className="dashboard">
-        <h3>Class Students</h3>
-        <div className="studentList">
-          <h4 className="section-title">Students</h4>
-        <div className="new-form-container">
-          <NewStudentForm baseURL={baseURL} handleAddStudent={this.handleAddStudent} />
-        </div>
-        { this.state.student ? <ShowStudent student={this.state.student} deleteStudent={this.deleteStudent}/> : null}
-          {this.state.students.map(student => (
-            <div key={student._id} onClick={() => this.getStudent(student)} className="studentCard">
-              <img src={student.imageUrl} alt="" className="studentCardImage" height="35" width="35"/>
-              <h5>{student.name}</h5>
-            </div>
-          )
-        )}
-        </div>
+      <div className="studentList">
+      <h4>Students</h4>
+        {this.state.students.map(student => (
+          <div key={student._id} onClick={() => this.getStudent(student)} className="studentCard">
+            <img src={student.imageUrl} alt="" className="studentCardImage" height="35" width="35"/>
+            <h5>{student.name}</h5>
+          </div>
+        )
+      )}
       </div>
+      { this.state.student ? <ShowStudent student={this.state.student} deleteStudent={this.deleteStudent}/> : null}
+      {/* <div className="new-form-container">
+        <NewStudentForm baseURL={baseURL} handleAddStudent={this.handleAddStudent} />
+      </div> */}
       </BrowserRouter>
     );
   }
@@ -265,9 +262,7 @@ class App extends React.Component {
           <Link to="/students/"><button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Students</button></Link>
           <Link to="/"><button type="button" class="btn btn-warning btn-sm" id="nav-bar-button">Home</button></Link>
         </div>
-        <div className="container">
-          <RenderRoutesFromRouter/> 
-        </div>
+        <RenderRoutesFromRouter/> 
       </div>
       </BrowserRouter>
     )

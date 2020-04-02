@@ -5,7 +5,7 @@ class ShowStudent extends React.Component {
     return (
       <>
         <div className="student-details">
-         <h3>Student Information:</h3>
+         <h4>Student Information:</h4>
          <hr/>
          <h4>{this.props.student.name}</h4>
          <img src={this.props.student.imageUrl} alt="" className="studentCardImage" height="60" width="60"/>
