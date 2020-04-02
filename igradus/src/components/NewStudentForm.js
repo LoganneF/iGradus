@@ -29,7 +29,7 @@ class NewStudentForm extends React.Component {
             this.props.handleAddStudent(resJson);
             this.setState({
               name: '',
-              imageUrl: '',
+              imageUrl: String,
               grade: Number
             });
           })
@@ -44,7 +44,7 @@ class NewStudentForm extends React.Component {
   
     render() {
       return (
-        <div className="student-details">
+        <div className="form-details">
           <h3>Add A New Student</h3>
           <form onSubmit={this.handleSubmit}>
               <input type="text" id="name" name="name" onChange={this.handleChange} placeholder="Name"/>

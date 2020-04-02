@@ -115,17 +115,17 @@ class Students extends React.Component {
     return (
       <BrowserRouter>
       <div className="studentList">
-      <div className="student-list-heading">
-        <h3>Students</h3>
-        <button type="button" onClick={this.handleOpenFormModal} class="btn btn-warning" id="add-new-button">Add Student</button>
-      </div>
-        {this.state.students.map(student => (
-          <div key={student._id} onClick={() => this.getStudent(student)} className="studentCard">
-            <img src={student.imageUrl} alt="" className="studentCardImage" height="35" width="35"/>
-            <h5>{student.name}</h5>
-          </div>
-        )
-      )}
+        <div className="student-list-heading">
+          <h3>Students</h3>
+          <button type="button" onClick={this.handleOpenFormModal} class="btn btn-warning" id="add-new-button">Add Student</button>
+        </div>
+          {this.state.students.map(student => (
+            <div key={student._id} onClick={() => this.getStudent(student)} className="studentCard">
+              <img src={student.imageUrl} alt="" className="studentCardImage" height="35" width="35"/>
+              <h5>{student.name}</h5>
+            </div>
+          )
+        )}
       </div>
       <div className="information-section">
         { this.state.student ? <ShowStudent student={this.state.student} deleteStudent={this.deleteStudent} closeInfoModal={this.handleCloseInfoModal}/> : null}
@@ -142,11 +142,15 @@ class Students extends React.Component {
 class Assignments extends React.Component {
 
   state = {
-    assignments: []
+    assignments: [],
+    showFormModal: false
   }
 
   getAssignment = assignment => {
-    this.setState({assignment})
+    this.setState({
+      assignment,
+      showFormModal: false
+    })
   }
 
 
@@ -169,12 +173,30 @@ class Assignments extends React.Component {
     copyAssignments.unshift(assignment);
     this.setState({
       assignments: copyAssignments,
-      date: String,
-      name: String,
-      grade: String,
-      assignment: {}
+      date: '',
+      name: '',
+      grade: ''
     });
   };
+
+  handleOpenFormModal = () => {
+    this.setState({
+      showFormModal: true,
+      assignment: false
+    })
+  }
+
+  handleCloseFormModal = () => {
+    this.setState({
+      showFormModal: false
+    })
+  }
+
+  handleCloseInfoModal = () => {
+    this.setState({
+      assignment:false
+    })
+  }
 
 
   deleteAssignment = id => {
@@ -184,30 +206,33 @@ class Assignments extends React.Component {
       const assignmentsArr = this.state.assignments.filter( assignment => {
         return assignment._id !== id
       })
-      this.setState({assignments: assignmentsArr})
+      this.setState({
+        assignments: assignmentsArr,
+        assignment: false
+      })
     })
   }
 
   render() {
     return (
       <BrowserRouter>
-      <div className="dashboard">
-        <h3>Class Assignments</h3>
         <div className="assignmentList">
-          <h4 className="section-title">Assignments</h4>
-          <div className="new-form-container">
-            <NewAssignmentForm baseURL={baseURL} handleAddAssignment={this.handleAddAssignment} />
+          <div className="assignment-list-heading">
+            <h3>Assignments</h3>
+            <button type="button" onClick={this.handleOpenFormModal} class="btn btn-warning" id="add-new-button">Add Assignment</button>
           </div>
-          { this.state.assignment ? <ShowAssignment assignment={this.state.assignment} deleteAssignment={this.deleteAssignment}/> : null}
           {this.state.assignments.map(assignment => (
-            <div key={assignment._id} onClick={() => this.getAssignment(assignment)} className="assignmentCard">
-              <h4>{assignment.name}</h4>
-              <h6>{assignment.date}</h6>
-            </div>
-          )
-        )}
+              <div key={assignment._id} onClick={() => this.getAssignment(assignment)} className="assignmentCard">
+                <h3>{assignment.name}</h3>
+                <h5>{assignment.date}</h5>
+              </div>
+            )
+          )}
         </div>
-      </div>
+        <div className="information-section">
+          { this.state.assignment ? <ShowAssignment assignment={this.state.assignment} deleteAssignment={this.deleteAssignment} closeInfoModal={this.handleCloseInfoModal}/> : null}
+          { this.state.showFormModal ? <NewAssignmentForm baseURL={baseURL} handleAddAssignment={this.handleAddAssignment} handleCloseFormModal={this.handleCloseFormModal} cancelForm={this.handleCloseFormModal} /> : null}
+        </div>
       </BrowserRouter>
     );
   }
