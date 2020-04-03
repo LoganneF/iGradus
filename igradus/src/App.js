@@ -352,14 +352,14 @@ class App extends React.Component {
           </div>
         </div>
         <div className="login-container">
-          <h3>Login</h3>
+          <h4>Login</h4>
           <div className="form">
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">Username</label> <br />
               <input type="text" name="username" placeholder="username" />
             </div>
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Password</label> <br />
               <input type="password" name="password" placeholder="password" />
             </div>
             <button type="submit" class="btn btn-primary" id="login-button">Login</button>
@@ -367,14 +367,14 @@ class App extends React.Component {
           <button type="submit" class="btn btn-outline-primary" id="login-button">Sign Up</button>
         </div>
         <div className="login-container">
-          <h3>Sign Up</h3>
+          <h4>Sign Up</h4>
           <div className="form">
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">Username</label> <br />
               <input type="text" name="username" placeholder="username" />
             </div>
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Password</label> <br />
               <input type="password" name="password" placeholder="password" />
             </div>
             <button type="submit" class="btn btn-primary" id="login-button">Sign Up</button>
