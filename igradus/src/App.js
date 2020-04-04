@@ -7,15 +7,11 @@ import ShowStudent from "./components/ShowStudent.js";
 import EditStudent from "./components/EditStudent.js";
 import ShowAssignment from "./components/ShowAssignment.js";
 import EditAssignment from "./components/EditAssignment.js";
-
 let baseURL = process.env.REACT_APP_BASEURL;
-
 if (process.env.NODE_ENV === "development") {
   baseURL = "http://localhost:3003";
 }
-
 console.log("current base URL:", baseURL);
-
 fetch(baseURL + "/students")
   .then(
     data => {
@@ -27,7 +23,6 @@ fetch(baseURL + "/students")
     parsedData => console.log(parsedData),
     err => console.log(err)
 );
-
 fetch(baseURL + "/assignments")
   .then(
     data => {
@@ -39,7 +34,6 @@ fetch(baseURL + "/assignments")
     parsedAssignmentData => console.log(parsedAssignmentData),
     err => console.log(err)
 );
-
 fetch(baseURL + "/users")
   .then(
     data => {
@@ -51,7 +45,6 @@ fetch(baseURL + "/users")
     parsedAssignmentData => console.log(parsedAssignmentData),
     err => console.log(err)
 );
-
 class Students extends React.Component {
   state = {
     students: [],
@@ -90,27 +83,22 @@ class Students extends React.Component {
       grade: ''
     });
   };
-
   handleOpenFormModal = () => {
     this.setState({
       showFormModal: true,
       student: false
     })
   }
-
   handleCloseFormModal = () => {
     this.setState({
       showFormModal: false
     })
   }
-
   handleCloseInfoModal = () => {
     this.setState({
       student:false
     })
   }
-
-
       
   deleteStudent = id => {
     fetch(baseURL + "/students/" + id, {
@@ -125,7 +113,6 @@ class Students extends React.Component {
       })
     })
   }
-
   editStudent = (resJson) => {
       const copyStudents = [...this.state.students]
       const findIndex = this.state.students.findIndex(student => student._id === student._id)
@@ -134,13 +121,11 @@ class Students extends React.Component {
       copyStudents[findIndex].grade = resJson.grade
       this.setState({students: copyStudents})
   }
-
   handleEditStudentButtonClick = () => {
     this.setState({
       editStudent: true
     });
   }
-
   handleEditStudentSubmit = () => {
     this.setState({
       editStudent: false
@@ -175,43 +160,18 @@ class Students extends React.Component {
     this.getStudents();
   }
 }
-
-class Dashboard extends React.Component {
-  render() {
-    return (
-      <div>
-        <form action="/" method="POST">
-			<div class="form-group">
-				Username: <input type="text" name="username" autofocus /> <br />
-			</div>
-			<div class="form-group">
-				Password: <input type="password" name="password" /> <br />
-			</div>
-			<div class="form-group">
-				<button type="submit">Login</button>
-			</div>
-		</form>
-      </div>
-    )
-  }
-}
-
 class Assignments extends React.Component {
-
   state = {
     assignments: [],
     showFormModal: false,
     editAssignment: false
   }
-
   getAssignment = assignment => {
     this.setState({
       assignment,
       showFormModal: false
     })
   }
-
-
   getAssignments = () => {
     fetch(baseURL + "/assignments")
       .then(
@@ -225,7 +185,6 @@ class Assignments extends React.Component {
         err => console.log(err)
     );
   };
-
   handleAddAssignment = assignment => {
     const copyAssignments = [...this.state.assignments];
     copyAssignments.unshift(assignment);
@@ -236,27 +195,22 @@ class Assignments extends React.Component {
       grade: ''
     });
   };
-
   handleOpenFormModal = () => {
     this.setState({
       showFormModal: true,
       assignment: false
     })
   }
-
   handleCloseFormModal = () => {
     this.setState({
       showFormModal: false
     })
   }
-
   handleCloseInfoModal = () => {
     this.setState({
       assignment:false
     })
   }
-
-
   deleteAssignment = id => {
     fetch(baseURL + "/assignments/" + id, {
       method: 'DELETE'
@@ -270,7 +224,6 @@ class Assignments extends React.Component {
       })
     })
   }
-
   editAssignment = (resJson) => {
     const copyAssignments = [...this.state.assignments]
     const findIndex = this.state.assignments.findIndex(assignment => assignment._id === assignment._id)
@@ -279,20 +232,16 @@ class Assignments extends React.Component {
     copyAssignments[findIndex].grade = resJson.grade
     this.setState({assignments: copyAssignments})
   }
-
   handleEditAssignmentButtonClick = () => {
     this.setState({
       editAssignment: true
     });
   }
-
   handleEditAssignmentSubmit = () => {
     this.setState({
       editAssignment: false
     });
   }
-
-
   render() {
     return (
       <BrowserRouter>
@@ -321,8 +270,6 @@ class Assignments extends React.Component {
     this.getAssignments();
   }
 }
-
-
 class RenderRoutesFromRouter extends React.Component {
   render() {
     return (
@@ -334,32 +281,27 @@ class RenderRoutesFromRouter extends React.Component {
   }
 }
 
-
 class App extends React.Component {
   
   state = {
     loginForm: true,
     userLoggedIn: false
   }
-
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
   };
-
   signUpBoxTrigger = () => {
     this.setState({
       signUpForm: true,
       loginForm: false
     })
   }
-
   signUpBoxClose = () => {
     this.setState({
       signUpForm: false,
       loginForm: true
     })
   }
-
   userLogInSuccess = () => {
     this.setState({
       loginForm: false,
@@ -368,14 +310,11 @@ class App extends React.Component {
       password: false
     })
   }
-
   wrongLogin = () => {
     this.setState({
       wrongPassword: true
     })
   }
-
-
   //Code for signup
  
   handleSignUp = event => {
@@ -394,8 +333,6 @@ class App extends React.Component {
     .then(this.userLogInSuccess())
     .catch(error => console.log(error));
   };
-
-
   //Code for login
   
   handleLogin = event => {
@@ -424,10 +361,6 @@ class App extends React.Component {
     //conditional
     .catch(err => console.log("Error", err)); 
   };
-
-
-
-
   render() {
     console.log(this.state)
     return (
@@ -474,7 +407,6 @@ class App extends React.Component {
             <button type="submit" onClick={this.signUpBoxClose} class="btn btn-outline-primary" id="login-button">Login</button>
           </div>
           : null}
-
           { this.state.userLoggedIn ?
           <div>
             <h2>Welcome {this.state.username}</h2>
@@ -483,13 +415,9 @@ class App extends React.Component {
           : null}
           </div>
         <RenderRoutesFromRouter/> 
-        </div>
-        <Dashboard />
-
       </div>
       </BrowserRouter>
     )
   }
 }
-
 export default App;
