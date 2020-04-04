@@ -176,6 +176,26 @@ class Students extends React.Component {
   }
 }
 
+class Dashboard extends React.Component {
+  render() {
+    return (
+      <div>
+        <form action="/" method="POST">
+			<div class="form-group">
+				Username: <input type="text" name="username" autofocus /> <br />
+			</div>
+			<div class="form-group">
+				Password: <input type="password" name="password" /> <br />
+			</div>
+			<div class="form-group">
+				<button type="submit">Login</button>
+			</div>
+		</form>
+      </div>
+    )
+  }
+}
+
 class Assignments extends React.Component {
 
   state = {
@@ -454,6 +474,7 @@ class App extends React.Component {
             <button type="submit" onClick={this.signUpBoxClose} class="btn btn-outline-primary" id="login-button">Login</button>
           </div>
           : null}
+
           { this.state.userLoggedIn ?
           <div>
             <h2>Welcome {this.state.username}</h2>
@@ -462,6 +483,9 @@ class App extends React.Component {
           : null}
           </div>
         <RenderRoutesFromRouter/> 
+        </div>
+        <Dashboard />
+
       </div>
       </BrowserRouter>
     )
