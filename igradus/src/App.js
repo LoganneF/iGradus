@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Link, Redirect, useHistory } from "react-router-dom";
 import './App.css';
 import NewStudentForm from "./components/NewStudentForm.js";
 import NewAssignmentForm from "./components/NewAssignmentForm.js";
@@ -29,6 +29,18 @@ fetch(baseURL + "/students")
 );
 
 fetch(baseURL + "/assignments")
+  .then(
+    data => {
+      return data.json();
+    },
+    err => console.log(err)
+  )
+  .then(
+    parsedAssignmentData => console.log(parsedAssignmentData),
+    err => console.log(err)
+);
+
+fetch(baseURL + "/users")
   .then(
     data => {
       return data.json();
@@ -311,39 +323,10 @@ class Assignments extends React.Component {
 }
 
 
-
-class Index extends React.Component {
-  render() {
-    return (
-      <BrowserRouter>
-      <div className="dashboard">
-        <h3>Dashboard</h3>
-        <div className="linkToPage">
-          <Link to="/students/"><img src="https://t3.ftcdn.net/jpg/02/95/63/32/240_F_295633293_GXc2GNTuM88snKOU6TU8zViOOnIkSOnZ.jpg" alt="" className="pageLinkImage"/></Link>
-          <h3 className="imageLinkText">Students</h3>
-        </div>
-        <div className="linkToPage">
-          <Link to="/assignments/"><img src="https://images.pexels.com/photos/167682/pexels-photo-167682.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" className="pageLinkImage"/></Link>
-          <h3 className="imageLinkText">Assignments</h3>
-        </div>
-      </div>
-      </BrowserRouter>
-    );
-  }
-}
-
-
-
-
-
-
-
-
 class RenderRoutesFromRouter extends React.Component {
   render() {
     return (
       <div>
-        <Route path="/" exact component={Index} />
         <Route path="/students/" exact component={Students} />
         <Route path="/assignments/" component={Assignments} />
       </div>
@@ -352,12 +335,89 @@ class RenderRoutesFromRouter extends React.Component {
 }
 
 
-
-
 class App extends React.Component {
   
+  state = {
+    loginForm: true,
+    userLoggedIn: false
+  }
+
+  handleChange = event => {
+    this.setState({ [event.target.id]: event.target.value });
+  };
+
+  signUpBoxTrigger = () => {
+    this.setState({
+      signUpForm: true,
+      loginForm: false
+    })
+  }
+
+  signUpBoxClose = () => {
+    this.setState({
+      signUpForm: false,
+      loginForm: true
+    })
+  }
+
+  userLogInSuccess = () => {
+    this.setState({
+      loginForm: false,
+      signUpForm: false,
+      userLoggedIn: true
+    })
+  }
+
+  wrongLogin = () => {
+    this.setState({
+      wrongPassword: true
+    })
+  }
+
+
+  //Code for signup
+ 
+  handleSignUp = event => {
+    event.preventDefault();
+    fetch(baseURL + "/users", {
+      method: "POST",
+      body: JSON.stringify({ 
+          username: this.state.username,
+          password: this.state.password
+          }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(this.userLogInSuccess())
+    .catch(error => console.log(error));
+  };
+
+
+  //Code for login
   
+  handleLogin = event => {
+    event.preventDefault();
+    fetch(baseURL + "/sessions", {
+      method: "POST",
+      body: JSON.stringify({ 
+          username: this.state.username,
+          password: this.state.password
+          }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(this.userLogInSuccess())      
+    .catch(this.wrongLogin()) 
+  };
+
+
+
+
   render() {
+    console.log(this.state)
     return (
       <BrowserRouter>
       <div className="App">
@@ -366,12 +426,42 @@ class App extends React.Component {
             <img src="logo.png" alt="iGradus logo" className="logo-img" height="50" width="50"/>
             <h1>iGradus</h1>
           </div>
+          { !this.state.signUpForm && !this.state.loginForm && this.state.userLoggedIn ? 
           <div className="nav-links-container">
-            <Link to="/"><h4 id="nav-bar-button">Home</h4></Link>
             <Link to="/students/"><h4 id="nav-bar-button">Students</h4></Link>
             <Link to="/assignments/"><h4 id="nav-bar-button">Assignments</h4></Link>
             <button type="button" class="btn btn-light" id="log-out-button">Log Out</button>
           </div>
+          : null}
+        </div>
+        <div className="home-container">
+        { this.state.loginForm ?
+          <div className="login-container">
+            <h4>Login</h4>
+            { this.state.wrongPassword ? <h5>Login Incorrect</h5> : null}
+            <form onSubmit={this.handleLogin} className="login-form">
+              <label htmlFor="username">Username</label>
+              <input type="text" id="username" name="username" onChange={this.handleChange} placeholder="username" />
+              <label htmlFor="password">Password</label>
+              <input type="password" id="password" name="password" onChange={this.handleChange} placeholder="password" />
+              <button type="submit" class="btn btn-primary" id="login-button">Login</button>
+            </form>
+            <button type="submit" onClick={this.signUpBoxTrigger} class="btn btn-outline-primary" id="login-button">Sign Up</button>
+          </div>
+        : null}
+        { this.state.signUpForm ?
+          <div className="login-container">
+            <h4>Sign Up</h4>
+            <form onSubmit={this.handleSignUp} className="login-form">
+              <label htmlFor="username">Username</label>
+              <input type="text" id="username" name="username" onChange={this.handleChange} placeholder="username" />
+              <label htmlFor="password">Password</label>
+              <input type="password" id="password" name="password" onChange={this.handleChange} placeholder="password" />
+              <button type="submit" class="btn btn-primary" id="login-button">Sign Up</button>
+            </form>
+            <button type="submit" onClick={this.signUpBoxClose} class="btn btn-outline-primary" id="login-button">Login</button>
+          </div>
+          : null}
         </div>
         <Dashboard />
       </div>

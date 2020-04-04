@@ -12,33 +12,33 @@ class NewStudentForm extends React.Component {
     };
   
     handleSubmit = event => {
-        event.preventDefault();
-        fetch(this.props.baseURL + "/students", {
-          method: "POST",
-          body: JSON.stringify({ 
-              name: this.state.name,
-              imageUrl: this.state.imageUrl,
-              grade: this.state.grade
-             }),
-          headers: {
-            "Content-Type": "application/json"
-          }
+      event.preventDefault();
+      fetch(this.props.baseURL + "/students", {
+        method: "POST",
+        body: JSON.stringify({ 
+            name: this.state.name,
+            imageUrl: this.state.imageUrl,
+            grade: this.state.grade
+            }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+        .then(res => res.json())
+        .then(resJson => {
+          this.props.handleAddStudent(resJson);
+          this.setState({
+            name: '',
+            imageUrl: String,
+            grade: Number
+          });
         })
-          .then(res => res.json())
-          .then(resJson => {
-            this.props.handleAddStudent(resJson);
-            this.setState({
-              name: '',
-              imageUrl: String,
-              grade: Number
-            });
-          })
-          .then(event => {
-            this.props.handleCloseFormModal(event)
-          })
+        .then(event => {
+          this.props.handleCloseFormModal(event)
+        })
 
-          .catch(error => console.error({ Error: error }));
-      };
+        .catch(error => console.error({ Error: error }));
+    };
 
 
   
