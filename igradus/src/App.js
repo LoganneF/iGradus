@@ -344,7 +344,8 @@ class App extends React.Component {
     this.setState({
       loginForm: false,
       signUpForm: false,
-      userLoggedIn: true
+      userLoggedIn: true,
+      password: false
     })
   }
 
@@ -378,6 +379,7 @@ class App extends React.Component {
   //Code for login
   
   handleLogin = event => {
+    console.log("handleLogin fired");
     event.preventDefault();
     fetch(baseURL + "/sessions", {
       method: "POST",
@@ -389,8 +391,18 @@ class App extends React.Component {
         "Content-Type": "application/json"
       }
     })
-    .then(this.userLogInSuccess())      
-    .catch(this.wrongLogin()) 
+    .then( (response) => {
+      if (response.ok) {
+        console.log("login success")
+        this.userLogInSuccess();
+      } else {
+        console.log("invalid login")
+        this.wrongLogin();
+      }
+    }
+    )     
+    //conditional
+    .catch(err => console.log("Error", err)); 
   };
 
 
@@ -418,7 +430,7 @@ class App extends React.Component {
         { this.state.loginForm ?
           <div className="login-container">
             <h4>Login</h4>
-            { this.state.wrongPassword ? <h5>Login Incorrect</h5> : null}
+            { this.state.wrongPassword ? <h5>Incorrect Login</h5> : null}
             <form onSubmit={this.handleLogin} className="login-form">
               <label htmlFor="username">Username</label>
               <input type="text" id="username" name="username" onChange={this.handleChange} placeholder="username" />
@@ -442,7 +454,13 @@ class App extends React.Component {
             <button type="submit" onClick={this.signUpBoxClose} class="btn btn-outline-primary" id="login-button">Login</button>
           </div>
           : null}
-        </div>
+          { this.state.userLoggedIn ?
+          <div>
+            <h2>Welcome {this.state.username}</h2>
+            <h3>Navigate iGradus to seamlessly organize your classroom's students and assignments.</h3>
+          </div>
+          : null}
+          </div>
         <RenderRoutesFromRouter/> 
       </div>
       </BrowserRouter>
