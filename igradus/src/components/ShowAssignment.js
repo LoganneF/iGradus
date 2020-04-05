@@ -8,7 +8,9 @@ class ShowAssignment extends React.Component {
          <h3>Assignment Information:</h3>
          <h4>{this.props.assignment.name}</h4>
          <h5>Due: {this.props.assignment.date}</h5>
-         <p><span>Average Grade: </span>{this.props.assignment.grade}</p>
+         <p><span>Average Grade: </span>{this.props.assignment.average}</p>
+         <h5>Description:</h5>
+         <h6>{this.props.assignment.description}</h6>
          <button type="button" class="btn btn-danger" id="modify-assignment-button" onClick={() => this.props.deleteAssignment(this.props.assignment._id)}>Delete Assignment</button>
          <button type="button" class="btn btn-info" id="modify-assignment-button" onClick={this.props.editButtonClick}>Edit Assignment</button> <br />
          <button type="button" class="btn btn-outline-secondary" id="close-button" onClick={this.props.closeInfoModal} >Close</button>

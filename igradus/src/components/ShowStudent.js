@@ -9,7 +9,8 @@ class ShowStudent extends React.Component {
           <h3>Student Information:</h3>
           <h4>{this.props.student.name}</h4>
           <img src={this.props.student.imageUrl} alt="" className="student-info-image"/>
-          <p><span>Grade:</span> { this.props.student.grade } </p>
+          <p><span>GPA:</span> { this.props.student.gpa } </p>
+          <p><span>Email:</span> { this.props.student.email } </p>
           <button type="button" class="btn btn-danger" id="modify-student-button" onClick={() => this.props.deleteStudent(this.props.student._id)}>Remove Student</button>
           <button type="button" class="btn btn-info" id="modify-student-button" onClick={this.props.editButtonClick}>Edit Student</button> <br />
           <button type="button" class="btn btn-outline-secondary" id="close-button" onClick={this.props.closeInfoModal} >Close</button>

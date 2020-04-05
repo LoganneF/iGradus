@@ -4,7 +4,8 @@ class NewStudentForm extends React.Component {
     state = {
       name: '',
       imageUrl: String,
-      grade: 0
+      gpa: 0,
+      email: ''
     }
   
     handleChange = event => {
@@ -18,7 +19,8 @@ class NewStudentForm extends React.Component {
         body: JSON.stringify({ 
             name: this.state.name,
             imageUrl: this.state.imageUrl,
-            grade: this.state.grade
+            gpa: this.state.gpa,
+            email: this.state.email
             }),
         headers: {
           "Content-Type": "application/json"
@@ -30,7 +32,8 @@ class NewStudentForm extends React.Component {
           this.setState({
             name: '',
             imageUrl: String,
-            grade: Number
+            gpa: Number,
+            email: ''
           });
         })
         .then(event => {
@@ -49,7 +52,8 @@ class NewStudentForm extends React.Component {
           <form onSubmit={this.handleSubmit}>
               <input type="text" id="name" name="name" onChange={this.handleChange} placeholder="Name"/>
               <input type="text" id="imageUrl" name="imageUrl" onChange={this.handleChange} placeholder="Image URL"/>
-              <input type="boolean" id="grade" name="grade" onChange={this.handleChange} placeholder="Grade"/>
+              <input type="text" id="gpa" name="gpa" onChange={this.handleChange} placeholder="GPA"/>
+              <input type="text" id="email" name="email" onChange={this.handleChange} placeholder="Email"/>
               <input type="submit" class="btn btn-success" id="submit-button" value="Enter"/>
           </form>
           <button type="button" class="btn btn-danger" id="submit-button" onClick={this.props.cancelForm}>Cancel</button>

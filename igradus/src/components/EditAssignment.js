@@ -5,7 +5,8 @@ class EditAssignment extends React.Component {
   state = {
     name: '',
     date: '',
-    grade: 0
+    average: 0,
+    description: ''
   }
 
   handleChange = event => {
@@ -19,7 +20,8 @@ class EditAssignment extends React.Component {
       body: JSON.stringify({ 
           name: this.state.name,
           date: this.state.date,
-          grade: this.state.grade
+          average: this.state.average,
+          decription: this.state.description
          }),
       headers: {
         "Content-Type": "application/json"
@@ -44,7 +46,8 @@ class EditAssignment extends React.Component {
           <form onSubmit={this.handleSubmit}>
               <input type="text" id="name" name="name" onChange={this.handleChange} placeholder={this.props.assignment.name}/>
               <input type="text" id="date" name="date" onChange={this.handleChange} placeholder={this.props.assignment.date}/>
-              <input type="text" id="grade" name="grade" onChange={this.handleChange} placeholder={this.props.assignment.grade}/>
+              <input type="text" id="average" name="average" onChange={this.handleChange} placeholder={this.props.assignment.average}/>
+              <input type="text" id="description" name="description" onChange={this.handleChange} placeholder={this.props.assignment.description}/>
               <input type="submit" class="btn btn-success" id="submit-button" value="Submit Edit"/>
           </form>
           <button type="button" class="btn btn-danger" id="submit-button" onClick={this.props.closeEditForm}>Cancel</button>
