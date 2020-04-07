@@ -16,6 +16,12 @@ An app that allows teachers to have an organized space for viewing students and 
 ### Who Would Use It: 
 Teachers/Educators
 
+
+## Approach taken:
+* Chris South - Lead Backend Engineer
+* Marco Riesgo - Lead Frontend Engineer, Product Manager
+* Loganne Featherston - Release Manager
+
 ## Description:
 Many states throughout the US are seeing an increase in their public schools' teacher to student ratio. This increase requires teachers to make organization a priority to keep track of students, their grades and their assignments.
 
@@ -24,8 +30,13 @@ iGradus is an organization app that allows teachers to keep track of their stude
 ### Installation Instructions
 yarn install
 
+
 ### Trello:
-https://trello.com/invite/b/jUeguKvD/2993df73a0625fa0e0dd968af8e60a0a/igradus
+
+[Project 3 User Stories - iGradus](https://trello.com/invite/b/jUeguKvD/2993df73a0625fa0e0dd968af8e60a0a/igradus)
 
 ### Wireframe:
 
+![alt text](https://github.com/LoganneF/iGradus-frontend/blob/marco/igradus/public/assignmentwireframe.png)
+
+![alt text](https://github.com/LoganneF/iGradus-frontend/blob/marco/igradus/public/studentwireframe.png)
