@@ -4,7 +4,7 @@
 https://igradus.herokuapp.com/
 
 ## Technologies Used
-HTML, CSS, JavaScript, jQuery
+HTML, CSS, JavaScript, jQuery, React Router,
 (MERN stack) Mongoose, Express, React, Node.js
 
 ### Problem: 
@@ -16,10 +16,20 @@ An app that allows teachers to have an organized space for viewing students and 
 ### Who Would Use It: 
 Teachers/Educators
 
+
 ## Approach taken:
 * Chris South - Lead Backend Engineer
-* Marco Riesgo - Lead Frontend Engineer
+* Marco Riesgo - Lead Frontend Engineer, Product Manager
 * Loganne Featherston - Release Manager
+
+## Description:
+Many states throughout the US are seeing an increase in their public schools' teacher to student ratio. This increase requires teachers to make organization a priority to keep track of students, their grades and their assignments.
+
+iGradus is an organization app that allows teachers to keep track of their students and assignments. Users are able to securely login and access a list of their students or assignments. Users can also click on a particular student to view their unique profile, or click on an assignment to view its content and specific details. 
+
+### Installation Instructions
+yarn install
+
 
 ### Trello:
 
