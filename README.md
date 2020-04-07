@@ -17,9 +17,9 @@ An app that allows teachers to have an organized space for viewing students and 
 Teachers/Educators
 
 ## Approach taken:
-
-## Installation Instructions
-
+Chris South - Lead Backend Engineer
+Marco Riesgo - Lead Frontend Engineer
+Loganne Featherston - Release Manager
 
 ### Trello:
 
