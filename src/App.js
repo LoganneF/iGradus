@@ -7,7 +7,7 @@ import ShowStudent from "./components/ShowStudent.js";
 import EditStudent from "./components/EditStudent.js";
 import ShowAssignment from "./components/ShowAssignment.js";
 import EditAssignment from "./components/EditAssignment.js";
-let baseURL = "https://igradus.herokuapp.com/";
+let baseURL = "https://git.heroku.com/igradus.git";
 // let baseURL = process.env.REACT_APP_BASEURL;
 // if (process.env.NODE_ENV === "development") {
 //   baseURL = "https://igradus.herokuapp.com/";
