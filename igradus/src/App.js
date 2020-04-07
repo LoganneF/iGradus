@@ -468,8 +468,7 @@ class App extends React.Component {
           : null}
           { this.state.userLoggedIn ?
           <div>
-            <h2>Welcome {this.state.username}</h2>
-            <h3>Navigate iGradus to seamlessly organize your classroom's students and assignments.</h3>
+            <h2 className="welcome-user">Welcome, {this.state.username}</h2>
           </div>
           : null}
           </div>
