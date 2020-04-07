@@ -27,3 +27,6 @@ Teachers/Educators
 
 ### Wireframe:
 
+![alt text](https://github.com/LoganneF/iGradus-frontend/blob/marco/igradus/public/assignmentwireframe.png)
+
+![alt text](https://github.com/LoganneF/iGradus-frontend/blob/marco/igradus/public/studentwireframe.png)
