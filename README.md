@@ -22,7 +22,8 @@ Teachers/Educators
 
 
 ### Trello:
-https://trello.com/invite/b/jUeguKvD/2993df73a0625fa0e0dd968af8e60a0a/igradus
+
+[Project 3 User Stories - iGradus](https://trello.com/invite/b/jUeguKvD/2993df73a0625fa0e0dd968af8e60a0a/igradus)
 
 ### Wireframe:
 
