@@ -80,7 +80,8 @@ class Students extends React.Component {
       students: copyStudents,
       name: '',
       imageUrl: '',
-      grade: ''
+      gpa: '',
+      email: ''
     });
   };
   handleOpenFormModal = () => {
@@ -118,7 +119,8 @@ class Students extends React.Component {
       const findIndex = this.state.students.findIndex(student => student._id === student._id)
       copyStudents[findIndex].name = resJson.name
       copyStudents[findIndex].imageUrl = resJson.imageUrl
-      copyStudents[findIndex].grade = resJson.grade
+      copyStudents[findIndex].gpa = resJson.gpa
+      copyStudents[findIndex].email = resJson.email
       this.setState({students: copyStudents})
   }
   handleEditStudentButtonClick = () => {
@@ -192,7 +194,8 @@ class Assignments extends React.Component {
       assignments: copyAssignments,
       date: '',
       name: '',
-      grade: ''
+      average: '',
+      description: ''
     });
   };
   handleOpenFormModal = () => {
@@ -229,7 +232,8 @@ class Assignments extends React.Component {
     const findIndex = this.state.assignments.findIndex(assignment => assignment._id === assignment._id)
     copyAssignments[findIndex].name = resJson.name
     copyAssignments[findIndex].date = resJson.date
-    copyAssignments[findIndex].grade = resJson.grade
+    copyAssignments[findIndex].average = resJson.average
+    copyAssignments[findIndex].description = resJson.description
     this.setState({assignments: copyAssignments})
   }
   handleEditAssignmentButtonClick = () => {
@@ -361,6 +365,18 @@ class App extends React.Component {
     //conditional
     .catch(err => console.log("Error", err)); 
   };
+
+
+  logOut = () => {
+    this.setState({
+      loginForm: true,
+      userLoggedIn: false,
+      username: '',
+      password: ''
+    })
+  }
+
+
   render() {
     console.log(this.state)
     return (
@@ -375,7 +391,7 @@ class App extends React.Component {
           <div className="nav-links-container">
             <Link to="/students/"><h4 id="nav-bar-button">Students</h4></Link>
             <Link to="/assignments/"><h4 id="nav-bar-button">Assignments</h4></Link>
-            <button type="button" class="btn btn-light" id="log-out-button">Log Out</button>
+            <button type="button" onClick={this.logOut} class="btn btn-light" id="log-out-button">Log Out</button>
           </div>
           : null}
         </div>
@@ -383,7 +399,7 @@ class App extends React.Component {
         { this.state.loginForm ?
           <div className="login-container">
             <h4>Login</h4>
-            { this.state.wrongPassword ? <h5>Incorrect Login</h5> : null}
+            { this.state.wrongPassword ? <p className="incorrect-login-tag">Incorrect username or password</p> : null}
             <form onSubmit={this.handleLogin} className="login-form">
               <label htmlFor="username">Username</label>
               <input type="text" id="username" name="username" onChange={this.handleChange} placeholder="username" />
@@ -409,8 +425,7 @@ class App extends React.Component {
           : null}
           { this.state.userLoggedIn ?
           <div>
-            <h2>Welcome {this.state.username}</h2>
-            <h3>Navigate iGradus to seamlessly organize your classroom's students and assignments.</h3>
+            <h2 className="welcome-user">Welcome, {this.state.username}</h2>
           </div>
           : null}
           </div>

@@ -5,7 +5,8 @@ class EditStudent extends React.Component {
   state = {
     name: '',
     imageUrl: '',
-    grade: 0
+    gpa: 0,
+    email: ''
   }
 
   handleChange = event => {
@@ -19,7 +20,8 @@ class EditStudent extends React.Component {
       body: JSON.stringify({ 
           name: this.state.name,
           imageUrl: this.state.imageUrl,
-          grade: this.state.grade
+          gpa: this.state.gpa,
+          email: this.state.email
          }),
       headers: {
         "Content-Type": "application/json"
@@ -44,7 +46,8 @@ class EditStudent extends React.Component {
           <form onSubmit={this.handleSubmit}>
               <input type="text" id="name" name="name" onChange={this.handleChange} placeholder={this.props.student.name}/>
               <input type="text" id="imageUrl" name="imageUrl" onChange={this.handleChange} placeholder={this.props.student.imageUrl}/>
-              <input type="boolean" id="grade" name="grade" onChange={this.handleChange} placeholder={this.props.student.grade}/>
+              <input type="text" id="gpa" name="gpa" onChange={this.handleChange} placeholder={this.props.student.gpa}/>
+              <input type="text" id="email" name="email" onChange={this.handleChange} placeholder={this.props.student.email}/>
               <input type="submit" class="btn btn-success" id="submit-button" value="Submit Edit"/>
           </form>
           <button type="button" class="btn btn-danger" id="submit-button" onClick={this.props.closeEditForm}>Cancel</button>

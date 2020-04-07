@@ -4,7 +4,8 @@ class NewAssignmentForm extends React.Component {
     state = {
       date: '',
       name: '',
-      grade: ''
+      average: '',
+      description: ''
     }
   
     handleChange = event => {
@@ -18,7 +19,8 @@ class NewAssignmentForm extends React.Component {
           body: JSON.stringify({ 
               date: this.state.date,
               name: this.state.name,
-              grade: this.state.grade
+              average: this.state.average,
+              description: this.state.description,
              }),
           headers: {
             "Content-Type": "application/json"
@@ -30,7 +32,8 @@ class NewAssignmentForm extends React.Component {
             this.setState({
               date: '',
               name: '',
-              grade: ''
+              average: '',
+              description: ''
             });
           })
           .then(event => {
@@ -45,9 +48,10 @@ class NewAssignmentForm extends React.Component {
         <div className="form-details">
           <h3>Add A New Assignment</h3>
           <form onSubmit={this.handleSubmit}>
-              <input type="text" id="date" name="date" onChange={this.handleChange} placeholder="Date"/>
               <input type="text" id="name" name="name" onChange={this.handleChange} placeholder="Name"/>
-              <input type="text" id="grade" name="grade" onChange={this.handleChange} placeholder="Grade"/>
+              <input type="text" id="date" name="date" onChange={this.handleChange} placeholder="Date"/>
+              <input type="text" id="average" name="average" onChange={this.handleChange} placeholder="Average Grade"/>
+              <input type="text" id="description" name="description" onChange={this.handleChange} placeholder="Description"/>
               <input type="submit" class="btn btn-success" id="submit-button" value="Enter"/>
           </form>
           <button type="button" class="btn btn-danger" id="submit-button" onClick={this.props.cancelForm}>Cancel</button>
