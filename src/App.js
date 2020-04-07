@@ -9,7 +9,7 @@ import ShowAssignment from "./components/ShowAssignment.js";
 import EditAssignment from "./components/EditAssignment.js";
 let baseURL = process.env.REACT_APP_BASEURL;
 if (process.env.NODE_ENV === "development") {
-  baseURL = "https://git.heroku.com/igradus.git";
+  baseURL = "https://igradus.herokuapp.com/";
 }
 console.log("current base URL:", baseURL);
 fetch(baseURL + "/students")
